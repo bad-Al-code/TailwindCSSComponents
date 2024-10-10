@@ -19,7 +19,6 @@ const App: React.FC = () => {
         name="password"
         placeholder="••••••••"
         required
-        className="mt-4"
       />
 
       <Button
