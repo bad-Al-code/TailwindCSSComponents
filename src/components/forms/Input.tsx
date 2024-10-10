@@ -6,6 +6,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   placeholder?: string;
   required?: boolean;
   className?: string;
+  fullWidth?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -15,12 +16,15 @@ const Input: React.FC<InputProps> = ({
   placeholder,
   required = false,
   className = "",
+  fullWidth = false,
   ...props
 }) => {
   const baseStyles =
-    "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5";
+    "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5";
   const darkModeStyles =
     "dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
+
+  const widthClass = fullWidth ? "w-full" : "";
 
   return (
     <div className="mb-4">
@@ -36,7 +40,7 @@ const Input: React.FC<InputProps> = ({
         type={type}
         name={name}
         id={name}
-        className={`${baseStyles} ${darkModeStyles} ${className}`}
+        className={`${baseStyles} ${darkModeStyles} ${className} ${widthClass}`}
         placeholder={placeholder}
         required={required}
         {...props}
