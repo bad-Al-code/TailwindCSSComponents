@@ -1,14 +1,20 @@
 import { useState } from "react";
 import Input from "../components/forms/Input";
 import Button from "../components/Button";
-import FormWrapper from "../components/FormWrapper";
+import FormWrapper from "../components/forms/FormWrapper";
+import Checkbox from "../components/Checkbox";
 
 const SignUpFormPage: React.FC = () => {
   const [formData, setFormData] = useState({
     email: "",
     name: "",
     password: "",
+    termsAccepted: false,
   });
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,6 +56,14 @@ const SignUpFormPage: React.FC = () => {
           value={formData.password}
           onChange={handleInputChange}
         />
+
+        <Checkbox
+          id="terms"
+          label="I accept the Terms and Conditions"
+          checked={formData.termsAccepted}
+          onChange={handleCheckboxChange}
+        />
+
         <Button
           type="submit"
           label="Create an account"
