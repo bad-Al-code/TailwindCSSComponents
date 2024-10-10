@@ -3,6 +3,9 @@ interface CheckboxProps {
   label: string;
   checked?: boolean;
   className?: string;
+  linkText?: string;
+  linkHref?: string;
+  required?: boolean;
 
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -13,23 +16,37 @@ const Checkbox: React.FC<CheckboxProps> = ({
   checked,
   onChange,
   className = "",
+  linkText,
+  linkHref,
+  required = false,
 }) => {
   return (
-    <div className={`{flex items-center ${className}`}>
-      <input
-        id={id}
-        type="checkbox"
-        checked={checked}
-        onChange={onChange}
-        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-      />
-
-      <label
-        htmlFor={id}
-        className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-      >
-        {label}
-      </label>
+    <div className={`flex items-center ${className}`}>
+      <div className="flex items-center h-5">
+        <input
+          id={id}
+          aria-describedby={id}
+          type="checkbox"
+          checked={checked}
+          onChange={onChange}
+          required={required}
+          className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800  checked:bg-primary-600"
+        />
+      </div>
+      <div className="ml-3  text-sm">
+        <label
+          htmlFor={id}
+          className="font-light text-gray-500 dark:text-gray-300"
+        >
+          {label}{" "}
+          <a
+            href={linkHref}
+            className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+          >
+            {linkText}
+          </a>
+        </label>
+      </div>
     </div>
   );
 };

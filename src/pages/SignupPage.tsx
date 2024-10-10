@@ -59,9 +59,12 @@ const SignUpFormPage: React.FC = () => {
 
         <Checkbox
           id="terms"
-          label="I accept the Terms and Conditions"
+          label="I accept the "
+          linkText="Terms and Conditions"
+          linkHref="#"
           checked={formData.termsAccepted}
           onChange={handleCheckboxChange}
+          className="mt-4"
         />
 
         <Button
