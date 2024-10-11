@@ -3,6 +3,7 @@ import Input from "../components/forms/Input";
 import Button from "../components/Button";
 import FormWrapper from "../components/forms/FormWrapper";
 import Checkbox from "../components/Checkbox";
+import PasswordStrengthMeter from "../components/PasswordStrengthProgressBar";
 
 const SignUpFormPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -20,7 +21,11 @@ const SignUpFormPage: React.FC = () => {
     e.preventDefault();
   };
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
   return (
     <FormWrapper title="SignUp">
@@ -46,16 +51,7 @@ const SignUpFormPage: React.FC = () => {
           onChange={handleInputChange}
         />
 
-        <Input
-          label="Password"
-          type="password"
-          name="password"
-          placeholder=""
-          required
-          fullWidth
-          value={formData.password}
-          onChange={handleInputChange}
-        />
+        <PasswordStrengthMeter />
 
         <Checkbox
           id="terms"
