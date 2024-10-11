@@ -1,7 +1,6 @@
 import { FaCheck } from "react-icons/fa6";
 import { IoMdClose } from "react-icons/io";
 import React, { useState } from "react";
-
 import Input from "./forms/Input";
 
 interface Requirement {
@@ -47,6 +46,7 @@ function getStrengthColor(strength: number): string {
 
 const PasswordStrengthMeter: React.FC = () => {
   const [password, setPassword] = useState<string>("");
+  const [isFocused, setIsFocused] = useState<boolean>(false);
 
   const strength = getStrength(password);
   const strengthColor = getStrengthColor(strength);
@@ -60,50 +60,58 @@ const PasswordStrengthMeter: React.FC = () => {
         value={password}
         required
         onChange={(event) => setPassword(event.target.value)}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
         placeholder="Enter Password"
       />
 
-      <div className="flex justify-between gap-2 mt-2">
-        <div className="w-full h-1 bg-gray-300">
-          <div
-            className={`h-1 ${password.length > 0 ? strengthColor : ""}`}
-            style={{ width: "100%" }}
-          />
+      <div
+        className={`transition-all duration-300 ease-in-out overflow-hidden ${
+          isFocused ? "max-h-32 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div className="flex justify-between gap-2 mt-2">
+          <div className="w-full h-1 bg-gray-300">
+            <div
+              className={`h-1 ${password.length > 0 ? strengthColor : ""}`}
+              style={{ width: "100%" }}
+            />
+          </div>
+          <div className="w-full h-1 bg-gray-300">
+            <div
+              className={`h-1 ${strength < 30 ? "" : strengthColor}`}
+              style={{ width: strength < 30 ? "0%" : "100%" }}
+            />
+          </div>
+          <div className="w-full h-1 bg-gray-300">
+            <div
+              className={`h-1 ${strength < 50 ? "" : strengthColor}`}
+              style={{ width: strength < 50 ? "0%" : "100%" }}
+            />
+          </div>
+          <div className="w-full h-1 bg-gray-300">
+            <div
+              className={`h-1 ${strength < 70 ? "" : strengthColor}`}
+              style={{ width: strength < 70 ? "0%" : "100%" }}
+            />
+          </div>
         </div>
-        <div className="w-full h-1 bg-gray-300">
-          <div
-            className={`h-1 ${strength < 30 ? "" : strengthColor}`}
-            style={{ width: strength < 30 ? "0%" : "100%" }}
-          />
-        </div>
-        <div className="w-full h-1 bg-gray-300">
-          <div
-            className={`h-1 ${strength < 50 ? "" : strengthColor}`}
-            style={{ width: strength < 50 ? "0%" : "100%" }}
-          />
-        </div>
-        <div className="w-full h-1 bg-gray-300">
-          <div
-            className={`h-1 ${strength < 70 ? "" : strengthColor}`}
-            style={{ width: strength < 70 ? "0%" : "100%" }}
-          />
-        </div>
-      </div>
 
-      <ul className="mt-4 text-sm text-gray-300">
-        {requirements.map((req, index) => (
-          <li key={index} className="flex items-center">
-            <span
-              className={`mr-2 ${
-                req.re.test(password) ? "text-green-500" : "text-red-500"
-              }`}
-            >
-              {req.re.test(password) ? <FaCheck /> : <IoMdClose />}
-            </span>
-            {req.label}
-          </li>
-        ))}
-      </ul>
+        <ul className="mt-4 text-sm text-gray-300">
+          {requirements.map((req, index) => (
+            <li key={index} className="flex items-center">
+              <span
+                className={`mr-2 ${
+                  req.re.test(password) ? "text-green-500" : "text-red-500"
+                }`}
+              >
+                {req.re.test(password) ? <FaCheck /> : <IoMdClose />}
+              </span>
+              {req.label}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
