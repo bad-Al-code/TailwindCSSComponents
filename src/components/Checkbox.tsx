@@ -8,8 +8,8 @@ interface CheckboxProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
   disabled?: boolean;
-  linkText: string;
-  linkHref: string;
+  linkText?: string;
+  linkHref?: string;
   required?: boolean;
 }
 
