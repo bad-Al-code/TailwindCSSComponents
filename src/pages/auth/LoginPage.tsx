@@ -1,10 +1,10 @@
 import { useState } from "react";
-import Input from "../components/forms/Input";
-import Button from "../components/Button";
-import FormWrapper from "../components/forms/FormWrapper";
-import Checkbox from "../components/Checkbox";
-import AuthPrompt from "../components/forms/AuthPrompt";
-import ForgotPassword from "../components/forms/ForgotPassword";
+import Input from "../../components/forms/Input";
+import Button from "../../components/Button";
+import FormWrapper from "../../components/forms/FormWrapper";
+import Checkbox from "../../components/Checkbox";
+import AuthPrompt from "../../components/forms/AuthPrompt";
+import ForgotPassword from "../../components/forms/ForgotPassword";
 
 const LoginPage: React.FC = () => {
   const [formData, setFormData] = useState({

@@ -1,10 +1,10 @@
 import { useState } from "react";
-import Input from "../components/forms/Input";
-import Button from "../components/Button";
-import FormWrapper from "../components/forms/FormWrapper";
-import Checkbox from "../components/Checkbox";
-import PasswordStrengthMeter from "../components/PasswordStrengthProgressBar";
-import AuthPrompt from "../components/forms/AuthPrompt";
+import Input from "../../components/forms/Input";
+import Button from "../../components/Button";
+import FormWrapper from "../../components/forms/FormWrapper";
+import Checkbox from "../../components/Checkbox";
+import PasswordStrengthMeter from "../../components/PasswordStrengthProgressBar";
+import AuthPrompt from "../../components/forms/AuthPrompt";
 
 const SignupPage: React.FC = () => {
   const [formData, setFormData] = useState({
