@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import Button from "../../components/Button";
 import FormWrapper from "../../components/forms/FormWrapper";
 import Input from "../../components/forms/Input";
+import TextButtonWithIcon from "../../components/forms/TextButtonWithIcon";
+import { FiRefreshCw } from "react-icons/fi";
 
 const OtpVerificationPage: React.FC = () => {
   const [otp, setOtp] = useState<string[]>(new Array(6).fill(""));
+  const [activeIndex, setActiveIndex] = useState(0);
   const [isOtpInvalid, setIsOtpInvalid] = useState(false);
 
   const handleChange = (
@@ -13,18 +16,18 @@ const OtpVerificationPage: React.FC = () => {
   ) => {
     const { value } = e.target;
 
-    // If input is not a number or if input length > 1, don't accept it
     if (/[^0-9]/.test(value) || value.length > 1) return;
 
     const newOtp = [...otp];
     newOtp[index] = value;
     setOtp(newOtp);
 
-    // Automatically move to the next input if a digit is entered
     if (value) {
       const nextInput = document.getElementById(`otp-${index + 1}`);
       if (nextInput) (nextInput as HTMLInputElement).focus();
     }
+
+    setActiveIndex(index); // Trigger animation on current input
   };
 
   const handleKeyDown = (
@@ -47,12 +50,11 @@ const OtpVerificationPage: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const otpCode = otp.join("");
+    // Test OTP validation
     if (otpCode !== "123456") {
-      // Mock OTP verification
       setIsOtpInvalid(true);
     } else {
       setIsOtpInvalid(false);
-      // Proceed to the next step after verification
     }
   };
 
@@ -76,7 +78,9 @@ const OtpVerificationPage: React.FC = () => {
               onChange={(e) => handleChange(e, index)}
               onKeyDown={(e) => handleKeyDown(e, index)}
               maxLength={1}
-              className="w-12 h-12 text-center text-xl border border-gray-300 rounded-md focus:outline-none dark:border-gray-600"
+              className={`w-12 h-12 text-center text-2xl border-b-2 border-gray-300 transition-transform focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 ${
+                activeIndex === index ? "animate-slide-up" : ""
+              }`}
             />
           ))}
         </div>
@@ -88,13 +92,11 @@ const OtpVerificationPage: React.FC = () => {
         )}
 
         <div className="flex justify-between w-full mt-4">
-          <button
-            type="button"
+          <TextButtonWithIcon
             onClick={handleResendOtp}
-            className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
-          >
-            Resend OTP
-          </button>
+            label="Resend OTP"
+            icon={<FiRefreshCw />}
+          />
           <Button type="submit" label="Verify" variant="filled" />
         </div>
       </form>

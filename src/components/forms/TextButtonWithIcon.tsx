@@ -4,21 +4,24 @@ import { FiArrowLeft } from "react-icons/fi";
 interface BackToLoginProps {
   onClick: () => void;
   label?: string;
+  icon?: React.ReactNode;
 }
 
-const BackToLogin: React.FC<BackToLoginProps> = ({
+const TextButtonWithIcon: React.FC<BackToLoginProps> = ({
   onClick,
-  label = "Back to login",
+  label,
+  icon = <FiArrowLeft />,
 }) => {
   return (
     <button
       onClick={onClick}
       className="flex items-center text-gray-500 hover:underline focus:outline-none"
     >
-      <FiArrowLeft className="mr-1" />
+      {icon && <span className="mr-2"> {icon}</span>}
+
       {label}
     </button>
   );
 };
 
-export default BackToLogin;
+export default TextButtonWithIcon;

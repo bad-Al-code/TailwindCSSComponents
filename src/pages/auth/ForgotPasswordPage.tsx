@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "../../components/Button";
 import FormWrapper from "../../components/forms/FormWrapper";
 import Input from "../../components/forms/Input";
-import BackToLogin from "../../components/forms/BackToLogin";
+import TextButtonWithIcon from "../../components/forms/TextButtonWithIcon";
 
 const ForgotPasswordPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -37,7 +37,10 @@ const ForgotPasswordPage: React.FC = () => {
         />
 
         <div className="flex justify-between items-center w-full mt-4">
-          <BackToLogin onClick={handleBackToLogin} />
+          <TextButtonWithIcon
+            onClick={handleBackToLogin}
+            label="Back to Login"
+          />
           <Button type="submit" label="Reset Password" variant="filled" />
         </div>
       </form>

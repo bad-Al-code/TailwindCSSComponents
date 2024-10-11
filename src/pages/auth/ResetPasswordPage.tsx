@@ -21,7 +21,7 @@ const ResetPasswordPage: React.FC = () => {
   };
 
   return (
-    <FormWrapper title="Change Password">
+    <FormWrapper title="Reset Password">
       <form onSubmit={handleSubmit}>
         <PasswordStrengthMeter />
 
