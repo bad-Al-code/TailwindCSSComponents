@@ -14,7 +14,11 @@ const SignUpFormPage: React.FC = () => {
   });
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
+    const { checked } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      termsAccepted: checked,
+    }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -58,6 +62,7 @@ const SignUpFormPage: React.FC = () => {
           label="I accept the "
           linkText="Terms and Conditions"
           linkHref="#"
+          required
           checked={formData.termsAccepted}
           onChange={handleCheckboxChange}
           className="mt-4"
