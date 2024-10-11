@@ -4,9 +4,9 @@ import Button from "../components/Button";
 import FormWrapper from "../components/forms/FormWrapper";
 import Checkbox from "../components/Checkbox";
 import PasswordStrengthMeter from "../components/PasswordStrengthProgressBar";
-import LoginPrompt from "../components/forms/LoginPrompt";
+import AuthPrompt from "../components/forms/AuthPrompt";
 
-const SignUpFormPage: React.FC = () => {
+const SignupPage: React.FC = () => {
   const [formData, setFormData] = useState({
     email: "",
     name: "",
@@ -82,10 +82,15 @@ const SignUpFormPage: React.FC = () => {
           fullWidth
           className="mt-4"
         />
-        <LoginPrompt onLoginClick={handleLoginClick} />
+
+        <AuthPrompt
+          actionText="Login"
+          onActionClick={handleLoginClick}
+          promptText="Already have an account?"
+        />
       </form>
     </FormWrapper>
   );
 };
 
-export default SignUpFormPage;
+export default SignupPage;

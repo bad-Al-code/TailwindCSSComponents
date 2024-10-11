@@ -98,6 +98,7 @@ const PasswordStrengthMeter: React.FC = () => {
         </div>
 
         <ul className="mt-4 text-sm text-gray-300">
+          gin
           {requirements.map((req, index) => (
             <li key={index} className="flex items-center">
               <span
