@@ -4,6 +4,7 @@ import Button from "../components/Button";
 import FormWrapper from "../components/forms/FormWrapper";
 import Checkbox from "../components/Checkbox";
 import PasswordStrengthMeter from "../components/PasswordStrengthProgressBar";
+import LoginPrompt from "../components/forms/LoginPrompt";
 
 const SignUpFormPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -31,6 +32,11 @@ const SignUpFormPage: React.FC = () => {
       [name]: value,
     }));
   };
+
+  const handleLoginClick = () => {
+    console.log("Navigate to Login Page");
+  };
+
   return (
     <FormWrapper title="SignUp">
       <form onSubmit={handleSubmit}>
@@ -38,6 +44,7 @@ const SignUpFormPage: React.FC = () => {
           label="Name"
           type="name"
           name="name"
+          placeholder="Name"
           required
           fullWidth
           value={formData.name}
@@ -65,7 +72,7 @@ const SignUpFormPage: React.FC = () => {
           required
           checked={formData.termsAccepted}
           onChange={handleCheckboxChange}
-          className="mt-4"
+          className="mt-2"
         />
 
         <Button
@@ -75,6 +82,7 @@ const SignUpFormPage: React.FC = () => {
           fullWidth
           className="mt-4"
         />
+        <LoginPrompt onLoginClick={handleLoginClick} />
       </form>
     </FormWrapper>
   );

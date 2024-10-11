@@ -15,16 +15,16 @@ const Button: React.FC<ButtonProps> = ({
   className = "",
   ...props
 }) => {
-  const baseStyles = `px-5 py-2.5 text-sm font-medium rounded-lg transition-transform duration-200 transform active:scale-95 focus:outline-none ${
+  const baseStyles = `flex items-center justify-center px-5 py-2.5 text-sm font-medium rounded-lg transition-transform duration-150 focus:outline-none ${
     fullWidth ? "w-full" : ""
   }`;
 
   const filledStyles =
-    "bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800";
+    "bg-primary-600 text-white hover:bg-primary-700 active:translate-y-0.5 active:shadow-inner";
   const outlineStyles =
-    "border border-primary-600 text-primary-600 hover:bg-primary-100 active:bg-primary-200";
+    "border border-primary-600 text-primary-600 hover:bg-primary-100 active:translate-y-0.5 active:shadow-inner";
   const textStyles =
-    "text-primary-600 hover:bg-primary-100 active:bg-primary-200";
+    "text-primary-600 hover:bg-primary-100 active:translate-y-0.5 active:shadow-inner";
 
   let styles;
   switch (variant) {
